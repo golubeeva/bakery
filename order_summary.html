@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Итог заказа</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Ваш заказ</h1>
+    <div>
+        {% for product, details in result.items() %}
+            <h2>{{ details.name }}</h2>
+            <p>Количество: {{ details.quantity }}</p>
+            <p>Напиток: {{ details.drink }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+

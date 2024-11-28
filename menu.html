@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Меню</h1>
+    <form action="/menu/submit" method="post">
+        {% for product in products %}
+            <div class="product">
+                <h2>{{ product.name }}</h2>
+                <label for="{{ product.id }}_name">Выберите вариант:</label>
+                <select name="{{ product.id }}_name">
+                    {% for option in product.options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="{{ product.id }}_quantity">Количество:</label>
+                <input type="number" name="{{ product.id }}_quantity" min="1" value="1">
+
+                <label for="{{ product.id }}_drink">Выберите напиток:</label>
+                <select name="{{ product.id }}_drink">
+                    {% for drink in drinks %}
+                        <option value="{{ drink.id }}">{{ drink.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% endfor %}
+
+        <button type="submit">Оформить заказ</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Личный кабинет</title>
+</head>
+<body>
+    <header>Личный кабинет</header>
+    <main class="profile-container">
+        <div class="profile-header">
+            <h1>Добро пожаловать, {{ user.username }}!</h1>
+            <p>Здесь вы можете обновить свои данные или посмотреть информацию о вашем профиле.</p>
+        </div>
+
+        <div class="profile-info">
+            <div class="info-card">
+                <h3>Имя</h3>
+                <p>{{ user.name }}</p>
+            </div>
+            <div class="info-card">
+                <h3>Пол</h3>
+                <p>{{ user.gender }}</p>
+            </div>
+        </div>
+
+        <form action="/profile" method="post" class="profile-form">
+            <h2>Редактировать данные</h2>
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" value="{{ user.name }}" required>
+            <label for="gender">Пол</label>
+            <select id="gender" name="gender" required>
+                <option value="Мужской" {% if user.gender =="Мужской" %}selected{% endif %}>Мужской</option>
+                <option value="Женский" {% if user.gender =="Женский" %}selected{% endif %}>Женский</option>
+            </select>
+            <button type="submit">Сохранить изменения</button>
+        </form>
+    </main>
+</body>
+</html>
